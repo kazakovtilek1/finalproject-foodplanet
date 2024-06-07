@@ -1,9 +1,12 @@
+import Dashboard from "../../components/adminComponents/Dashboard"
+import Sidebar from "../../components/adminComponents/Sidebar"
 
 function adminPage() {
     return (
-        <div>
-            adminPage
-        </div>
+        <>
+            <Sidebar />
+            <Dashboard />
+        </>
     )
 }
 
