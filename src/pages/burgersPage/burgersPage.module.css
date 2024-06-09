@@ -1,0 +1,113 @@
+.burger_navBar{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    align-items: center;
+}
+
+.burger_navBar .testActive {
+    color: red;
+}
+
+.burger_navBar a{
+    text-decoration: none;
+    color: #1D3130;
+}
+
+.burger_nav_txt{
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 29px;
+    color: #254F4C;
+    margin-right: 164px;
+}
+
+.burger_nav_li{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    margin: 0 35px 0 0;
+}
+
+.burger_card{
+    font-family: Roboto sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: #FFFFFF;
+    margin-top: 60px;
+    /*width: 264px;*/
+    height: 392px;
+}
+
+.burger_card_bgr{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    text-align: center;
+    width: 195px;
+    height: 348px;
+    border-radius: 40px;
+    background-color: #2B4241;
+    padding: 0 20px;
+}
+
+.burger_img{
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.burger_title{
+    padding-top: 105px;
+    margin: 10px 0 5px;
+}
+
+.burger_text{
+   font-size: 14px;
+    line-height: 16px;
+}
+
+.burger_btn{
+    display: flex;
+    align-items: center;
+}
+
+.burger_btn button{
+    background-color: transparent;
+    border: none;
+    color: #FF583E;
+    margin-top: 3px;
+    margin-bottom: 7px;
+
+}
+
+.burger_minus_btn{
+    padding-bottom: 5px;
+
+}
+
+.burger_plus_btn{
+    padding-top: 8px;
+
+}
+
+.burger_korzina_btn{
+    background-color: #FF583E;
+    color: white;
+    border-radius: 40px;
+    border: none;
+    width: 200px;
+    height: 48px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.burger_price{
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
