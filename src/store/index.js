@@ -7,8 +7,3 @@ const reducer = combineReducers({
     
 })
 
-
-
-export const store = configureStore({
-    
-})
