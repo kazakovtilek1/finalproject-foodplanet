@@ -1,45 +1,62 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const initialState = {
-    productTypes: [],
-    allProducts: []
+const saveCartToLocalStorage = (cart) => {
+    try {
+        const serializedCart = JSON.stringify(cart);
+        localStorage.setItem('cart', serializedCart);
+    } catch (error) {
+        console.error('error');
+    }
+};
+
+const loadCartFromLocalStorage = () => {
+    try {
+        const serializedCart = localStorage.getItem('cart');
+        return serializedCart ? JSON.parse(serializedCart) : [];
+    } catch (error) {
+        console.error('error');
+        return [];
+    }
 };
 
 const productCountSlice = createSlice({
-    name: "products",
-    initialState,
+    name: 'products',
+    initialState: {
+        productTypes: [],
+        allProducts: [],
+        cart: loadCartFromLocalStorage(),
+    },
     reducers: {
-        setAllProducts: (state, action) => {
+        setProductTypes(state, action) {
+            state.productTypes = action.payload;
+        },
+        setAllProducts(state, action) {
             state.allProducts = action.payload;
         },
-        incrementProductCount: (state, action) => {
-            const {productId} = action.payload;
-            const product = state.allProducts.find((p) => p.id === productId);
+        incrementProductCount(state, action) {
+            const product = state.allProducts.find(product => product.id === action.payload.productId);
             if (product) {
                 product.count = (product.count || 0) + 1;
             }
         },
-        decrementProductCount: (state, action) => {
-            const { productId } = action.payload;
-            const product = state.allProducts.find((p) => p.id === productId);
+        decrementProductCount(state, action) {
+            const product = state.allProducts.find(product => product.id === action.payload.productId);
             if (product && product.count > 0) {
-                product.count--;
+                product.count -= 1;
             }
         },
-        addToLocalStorage: (state, action) => {
-            const {productId} = action.payload;
-            const product = state.allProducts.find((p) => p.id === productId);
+        addToLocalStorage(state, action) {
+            const product = state.allProducts.find(product => product.id === action.payload.productId);
             if (product) {
-                let selectedProducts =
-                    JSON.parse(localStorage.getItem("selectedProducts")) || [];
-                selectedProducts.push(product);
-                localStorage.setItem("selectedProducts", JSON.stringify(selectedProducts));
+                state.cart.push(product);
+                saveCartToLocalStorage(state.cart);
             }
-        }
-    }
+        },
+    },
 });
 
 export const {
+    setProductTypes,
     setAllProducts,
     incrementProductCount,
     decrementProductCount,

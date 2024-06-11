@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import productTypeReducer from "./productCountSlice";
 
 const reducer = combineReducers({
-    productType: productTypeReducer
+    products: productTypeReducer
 })
 
 export const store = configureStore({
