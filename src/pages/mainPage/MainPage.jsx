@@ -1,11 +1,12 @@
 import React from 'react'
-import NewsPage from "../newsPage/NewsPage";
-
+import Pizza from '../../features/pizza/Pizza'
+import NewsPage from '../newsPage/NewsPage'
 
 function MainPage() {
   return (
     <div>
-      <NewsPage/>
+      <Pizza />
+      <NewsPage />
     </div>
   )
 }
