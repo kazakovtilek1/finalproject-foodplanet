@@ -8,3 +8,7 @@ body {
   font-family: "Montserrat", sans-serif;
 
 }
+
+main {
+  min-height: calc(100vh - 150px)
+}

@@ -6,6 +6,7 @@
     max-height: 32px;
     align-items: center;
     font-size: 16px;
+    position: relative;
 }
 
 .header__left {
@@ -49,11 +50,17 @@
     color: #FF583E;
 }
 
-.nav active {
-    color: #FF583E;
-}
-
 .nav img {
     width: 14px;
     height: 12px;
+}
+
+.basket__icon {
+    cursor: pointer;
+    transition: color, transform 500ms ease;
+}
+
+.basket__icon:hover {
+    color: red;
+    transform: scale(1.5);
 }

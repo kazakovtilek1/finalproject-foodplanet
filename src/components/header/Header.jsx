@@ -3,11 +3,15 @@ import Group from '../../images/Group.png'
 import classes  from '../../styles/header.module.css'
 import { NavLink } from 'react-router-dom'
 import basket from '../../images/Vector.png'
+import { FaShoppingCart } from "react-icons/fa";
+
 
 
 
 
 function Header() {
+
+
   return (
     <header className={classes.header}>
       <div className={classes.header__left}>
@@ -35,7 +39,7 @@ function Header() {
             &#128222; +996500405988
           </li>
           <li>
-            <NavLink className={classes.nav}><img src={basket} alt="" /> 1</NavLink>
+            <NavLink to="/basket"><FaShoppingCart className={classes.basket__icon} /></NavLink>
           </li>
         </ul>
       </div>
