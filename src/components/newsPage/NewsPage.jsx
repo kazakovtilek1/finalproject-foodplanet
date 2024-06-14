@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import burgerStyles from './newsPage.module.css';
-import plus_img from './imgNews/plus.png'
-import minus_img from './imgNews/minus.png'
+import plus_img from './imgNews/plus.svg';
+import minus_img from './imgNews/minus.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {
     setAllProducts,
