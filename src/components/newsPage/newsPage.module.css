@@ -1,32 +1,34 @@
-.burger_navBar{
+.burger_pages{
     display: flex;
-    list-style: none;
+    align-items: baseline;
     padding: 0;
-    align-items: center;
 }
 
-.burger_navBar .testActive {
-    color: red;
-}
-
-.burger_navBar a{
-    text-decoration: none;
-    color: #1D3130;
-}
-
-.burger_nav_txt{
+.burger_news_txt{
     font-weight: 900;
     font-size: 25px;
     line-height: 29px;
     color: #254F4C;
-    margin-right: 164px;
+    margin: 0 164px 0 0;
+    padding: 10px 0;
 }
 
-.burger_nav_li{
+.burger_pages_li{
+    font-family: Roboto sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 18px;
-    margin: 0 35px 0 0;
+    padding: 0 15px;
+    color: #1D3130;
+}
+
+.burger_pages_li_btn{
+    background: transparent;
+    border: none;
+}
+
+.burger_pages_li_btn:focus .burger_pages_li {
+    color: red;
 }
 
 .burger_card{
@@ -36,6 +38,7 @@
     align-items: flex-end;
     color: #FFFFFF;
     margin-top: 60px;
+    padding: 0;
     /*width: 264px;*/
     height: 392px;
 }
@@ -81,17 +84,14 @@
     color: #FF583E;
     margin-top: 3px;
     margin-bottom: 7px;
-
 }
 
 .burger_minus_btn{
     padding-bottom: 5px;
-
 }
 
 .burger_plus_btn{
     padding-top: 8px;
-
 }
 
 .burger_korzina_btn{
@@ -111,3 +111,5 @@
     font-size: 20px;
     font-weight: 700;
 }
+
+
