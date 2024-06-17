@@ -8,8 +8,8 @@ import ReviewsPage from "../../components/reviewsPage/ReviewsPage"
 function MainPage() {
   return (
     <div>
+        {/* <NewsPage/> */}
         <Pizza/>
-        <NewsPage/>
         <OurAdvantagesPage/>
         <ReviewsPage/>
     </div>

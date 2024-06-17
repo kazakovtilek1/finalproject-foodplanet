@@ -15,7 +15,7 @@ import axios from "axios";
 
 
 function NewsPage() {
-    const {productTypes, allProducts} = useSelector((store) => store.products);
+    const {productTypes, allProducts} = useSelector((store) => store.productsMain);
     const dispatch = useDispatch();
 
 
