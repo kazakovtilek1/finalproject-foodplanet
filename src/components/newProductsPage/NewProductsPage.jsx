@@ -1,51 +1,30 @@
 import React, {useEffect} from 'react';
-import burgerStyles from './newsPage.module.css';
-import plus_img from './imgNews/plus.svg';
-import minus_img from './imgNews/minus.svg';
+import burgerStyles from './newProductsPage.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {
-    setAllProducts,
-    setProductTypes,
+    getProductsType,
+    filtered,
     incrementProductCount,
     decrementProductCount,
-    addToLocalStorage
+    addToLocalStorage,
+    setCurrentProductType,
 } from "../../store/productCountSlice";
-import axios from "axios";
 
 
 
-function NewsPage() {
-    const {productTypes, allProducts} = useSelector((store) => store.products);
+function NewProductsPage() {
+    const {productTypes, allProducts, currentProductType} = useSelector((store) => store.productTypeReducer);
     const dispatch = useDispatch();
 
-
-    const getProductsType = async () => {
-        try{
-            const response = await axios.get(`http://localhost:8000/productTypes`)
-            dispatch(setProductTypes(response.data));
-        }
-        catch (error){
-            console.log(error)
-        }
-
-    }
-
-    const filtered = async (id) => {
-        try{
-            const response = await axios.get(`http://localhost:8000/allProducts?productType=${id}&news=true`)
-            dispatch(setAllProducts(response.data));
-        }
-        catch (error){
-            console.log(error)
-        }
-
-    }
-
     useEffect(() => {
-        getProductsType()
-        filtered(1)
-    }, [dispatch]);
+        dispatch(getProductsType());
+        dispatch(filtered(currentProductType));
+    }, [currentProductType]);
 
+
+    const handleFilter = (id) => {
+        dispatch(setCurrentProductType(id));
+    };
 
     const changeCountIncrement = (productId) => {
         dispatch(incrementProductCount({ productId }));
@@ -65,7 +44,7 @@ function NewsPage() {
                 <p className={burgerStyles.burger_news_txt}>Новинки</p>
                 {productTypes && productTypes.map(type => (
                     <button className={burgerStyles.burger_pages_li_btn}
-                            onClick={() => filtered(type.id)} key={type.id}>
+                            onClick={() => handleFilter(type.id)} key={type.id}>
                         <p className={burgerStyles.burger_pages_li}>{type.title}</p>
                     </button>
                 ))}
@@ -77,8 +56,7 @@ function NewsPage() {
                         <div className={burgerStyles.burger_card_bgr}>
                             <img src={product.image}
                                  alt="picture of burger"
-                                 className={burgerStyles.burger_img}
-                            />
+                                 className={burgerStyles.burger_img}/>
                             <h2 className={burgerStyles.burger_title}>{product.name}</h2>
                             <p className={burgerStyles.burger_text}>
                                 {product.description}
@@ -88,13 +66,20 @@ function NewsPage() {
                                 <button
                                     className={burgerStyles.burger_minus_btn}
                                     onClick={() => changeCountDecrement(product.id)}>
-                                    <img src={minus_img} alt="minus_img"/>
+                                    <svg width="16" height="3" viewBox="0 0 16 2" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0 1.43091L16 1.43091" stroke="#FF583E"/>
+                                    </svg>
                                 </button>
-                                    {product.count || 0}
+                                {product.count || 0}
                                 <button
                                     className={burgerStyles.burger_plus_btn}
                                     onClick={() => changeCountIncrement(product.id)}>
-                                    <img src={plus_img} alt="plus_img"/>
+                                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 16.4802L8 0.381835" stroke="#FF583E"/>
+                                        <path d="M0 8.43091L16 8.43091" stroke="#FF583E"/>
+                                    </svg>
                                 </button>
                             </div>
                             <button
@@ -109,4 +94,4 @@ function NewsPage() {
     );
 }
 
-export default NewsPage;
+export default NewProductsPage;

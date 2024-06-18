@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import productTypeReducer from "./productCountSlice";
+import reviewsReducer from "./reviewsSlice";
 
 const reducer = combineReducers({
-    products: productTypeReducer
+    productTypeReducer,
+    reviewsReducer,
 })
 
 export const store = configureStore({
