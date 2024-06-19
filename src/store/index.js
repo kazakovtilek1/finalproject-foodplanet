@@ -1,12 +1,14 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import productTypeReducer from "./productCountSlice";
-import productsReducer from './slices/productCreateSliceFromAdmin';
+import reviewsReducer from "./reviewsSlice";
+
+
 
 
 
 const reducer = combineReducers({
-    productsMain: productTypeReducer,
-    products: productsReducer
+    productTypeReducer,
+    reviewsReducer,
 })
 
 
