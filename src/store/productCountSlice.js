@@ -13,7 +13,8 @@ export const getProductsType = createAsyncThunk(
 export const filtered = createAsyncThunk(
     "products/fetchProductsByType",
     async (id) => {
-        const response = await axios.get(`http://localhost:8000/allProducts?productType=${id}&news=true`);
+        // const response = await axios.get(`http://localhost:8000/allProducts?productType=${id}&news=true`);
+        const response = await axios.get(`http://localhost:8000/allProducts?productType=${id}`);
         return response.data;
     }
 );
@@ -34,7 +35,7 @@ const productCountSlice = createSlice({
     initialState: {
         productTypes: [],
         allProducts: [],
-        currentProductType: 2,
+        currentProductType: null,
         cart: JSON.parse(localStorage.getItem("cart")) || []
     },
     reducers: {

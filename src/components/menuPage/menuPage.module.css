@@ -1,0 +1,133 @@
+.pizza_pages{
+    display: flex;
+    align-items: baseline;
+    padding: 0;
+}
+
+.pizza_news_txt{
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 29px;
+    color: #254F4C;
+    margin: 0 164px 0 0;
+    padding: 10px 0;
+}
+
+.pizza_pages_li{
+    font-family: Roboto sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+    padding: 0 15px;
+    color: #1D3130;
+}
+
+.pizza_pages_li_btn{
+    background: transparent;
+    border: none;
+}
+
+.pizza_pages_li_btn:focus .burger_pages_li {
+    color: red;
+}
+
+.pizza_card{
+    font-family: Roboto sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 94px;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: #FFFFFF;
+    margin-top: 60px;
+    padding: 0;
+    /*width: 264px;*/
+    /*height: 392px;*/
+}
+
+.pizza_card_bgr{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    text-align: center;
+    width: 195px;
+    height: 348px;
+    border-radius: 40px;
+    box-shadow: 0 0 6px 1.1px rgba(0, 0, 0, 0.2);
+    padding: 0 20px;
+}
+
+.pizza_img{
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pizza_title{
+    padding-top: 105px;
+    margin: 10px 0 5px;
+    color: #254F4C;
+}
+
+.pizza_text{
+    font-size: 14px;
+    line-height: 16px;
+    color: #000000;
+}
+
+.pizza_btn{
+    display: flex;
+    align-items: center;
+    color: #254F4C;
+}
+
+.pizza_btn button{
+    background-color: transparent;
+    border: none;
+    color: #FF583E;
+    margin-top: 3px;
+    margin-bottom: 7px;
+}
+
+.pizza_minus_btn{
+    padding-bottom: 5px;
+}
+
+.pizza_plus_btn{
+    padding-top: 8px;
+}
+
+.pizza_korzina_btn{
+    background-color: #FF583E;
+    color: white;
+    border-radius: 40px;
+    border: none;
+    width: 200px;
+    height: 48px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.pizza_price{
+    margin: 0;
+    color: #254F4C;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.pizzaMoreBtn{
+    color: #FF583E;
+    padding: 12px 24px;
+    border-radius: 40px;
+    border: 1px solid #FF583E;
+    text-transform: uppercase;
+    display: block;
+    margin: 43px auto 0;
+    font-weight: 700;
+    width: 200px;
+}
+
+
