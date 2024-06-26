@@ -1,36 +1,34 @@
 import React, {useEffect} from 'react';
-import burgerStyles from './newProductsPage.module.css';
-import pizzaStyles from '../menuPage/menuPage.module.css';
+import pizzaStyles from './menuPage.module.css';
+import burgerStyles from '../newProductsPage/newProductsPage.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {
-    getProductsType,
-    filtered,
-    incrementProductCount,
-    decrementProductCount,
     addToLocalStorage,
-    setCurrentProductType,
+    decrementProductCount,
+    filtered,
+    getProductsType,
+    incrementProductCount,
+    setCurrentProductType
 } from "../../store/productCountSlice";
+import button from "bootstrap/js/src/button";
 
 
-
-
-function NewProductsPage() {
+function MenuPage() {
     const {productTypes, allProducts, currentProductType} = useSelector((store) => store.productTypeReducer);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getProductsType());
-        // dispatch(filtered(currentProductType));
-        // dispatch(setCurrentProductType(2))
-        // dispatch(filtered(2));
+        dispatch(setCurrentProductType(1));
+        dispatch(filtered(1))
     }, [dispatch]);
 
-    useEffect(() => {
-        if (currentProductType !== null) {
-            dispatch(filtered(currentProductType));
-        }
-    }, [currentProductType, dispatch]);
-
+    //
+    // useEffect(() => {
+    //     if (currentProductType !== null) {
+    //         dispatch(filtered(currentProductType));
+    //     }
+    // }, [currentProductType, dispatch]);
 
     const handleFilter = (id) => {
         dispatch(setCurrentProductType(id));
@@ -44,38 +42,40 @@ function NewProductsPage() {
         dispatch(decrementProductCount({ productId }));
     };
 
-    const addProductsToLSFn = (productId) => {
+    const addProductsToLS = (productId) => {
         dispatch(addToLocalStorage({ productId }));
     };
 
     return (
         <div>
-            <ul className={burgerStyles.burger_pages}>
-                <p className={burgerStyles.burger_news_txt}>Новинки</p>
+            <ul className={pizzaStyles.pizza_pages}>
+                <p className={pizzaStyles.pizza_news_txt}>Меню</p>
                 {productTypes && productTypes.map(type => (
-                    <button className={burgerStyles.burger_pages_li_btn}
+                    <button className={pizzaStyles.pizza_pages_li_btn}
                             onClick={() => handleFilter(type.id)} key={type.id}>
-                        <p className={burgerStyles.burger_pages_li}>{type.title}</p>
+                        <p className={pizzaStyles.pizza_pages_li}>
+                            {type.title}
+                        </p>
                     </button>
                 ))}
             </ul>
 
-            <ul className={currentProductType === 2 ? burgerStyles.burger_card : pizzaStyles.pizza_card}>
+            <ul className={pizzaStyles.pizza_card}>
                 {allProducts && allProducts.map((product) => (
                     <div key={product.id}
-                    className={currentProductType === 2 ? burgerStyles.burger_card_bgr : pizzaStyles.pizza_card_bgr}>
-                        <div className={currentProductType === 2 ? burgerStyles.burger_card_bgr : pizzaStyles.pizza_card_bgr}>
+                    className={currentProductType === 1 ? pizzaStyles.pizza_card_bgr : burgerStyles.burger_card_bgr}>
+                        <div className={pizzaStyles.pizza_card_bgr}>
                             <img src={product.image}
-                                 alt="picture of burger"
-                                 className={burgerStyles.burger_img}/>
-                            <h2 className={currentProductType === 2 ? burgerStyles.burger_title : pizzaStyles.pizza_title}>{product.name}</h2>
-                            <p className={currentProductType === 2 ? burgerStyles.burger_text : pizzaStyles.pizza_text}>
+                                 alt="picture of pizza"
+                                 className={pizzaStyles.pizza_img}/>
+                            <h2 className={currentProductType === 1 ? pizzaStyles.pizza_title : burgerStyles.burger_title}>{product.name}</h2>
+                            <p className={currentProductType === 1 ? pizzaStyles.pizza_text : burgerStyles.burger_text}>
                                 {product.description}
                             </p>
-                            <p className={currentProductType === 2 ? burgerStyles.burger_price : pizzaStyles.pizza_price}>{product.price}</p>
-                            <div className={currentProductType === 2 ? burgerStyles.burger_btn : pizzaStyles.pizza_btn}>
+                            <p className={currentProductType === 1 ? pizzaStyles.pizza_price : burgerStyles.burger_price}>{product.price}</p>
+                            <div className={currentProductType === 1 ? pizzaStyles.pizza_btn : burgerStyles.burger_btn}>
                                 <button
-                                    className={burgerStyles.burger_minus_btn}
+                                    className={pizzaStyles.pizza_minus_btn}
                                     onClick={() => changeCountDecrement(product.id)}>
                                     <svg width="16" height="3" viewBox="0 0 16 2" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +84,7 @@ function NewProductsPage() {
                                 </button>
                                 {product.count || 0}
                                 <button
-                                    className={burgerStyles.burger_plus_btn}
+                                    className={pizzaStyles.pizza_plus_btn}
                                     onClick={() => changeCountIncrement(product.id)}>
                                     <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -94,15 +94,17 @@ function NewProductsPage() {
                                 </button>
                             </div>
                             <button
-                                className={burgerStyles.burger_korzina_btn}
-                                onClick={() => addProductsToLSFn(product.id)}>
+                                className={pizzaStyles.pizza_korzina_btn}
+                                onClick={() => addProductsToLS(product.id)}>
                                 В корзину
                             </button>
                         </div>
-                    </div>))}
+                    </div>
+                ))}
             </ul>
+            <button className={pizzaStyles.pizzaMoreBtn}>Показать еще</button>
         </div>
     );
 }
 
-export default NewProductsPage;
+export default MenuPage;
