@@ -1,51 +1,48 @@
 import React, {useEffect} from 'react';
 import burgerStyles from './newProductsPage.module.css';
-import pizzaStyles from '../menuPage/menuPage.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {
     getProductsType,
-    filtered,
-    incrementProductCount,
-    decrementProductCount,
-    addToLocalStorage,
-    setCurrentProductType,
+    fetchNewProducts,
+    incrementNewProductCount,
+    decrementNewProductCount,
+    addToProductLocalStorage,
+    setNewProductType
 } from "../../store/productCountSlice";
 
 
 
 
 function NewProductsPage() {
-    const {productTypes, allProducts, currentProductType} = useSelector((store) => store.productTypeReducer);
+    const {productTypes, currentNewProductType, newProducts} = useSelector((store) => store.productTypeReducer);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getProductsType());
-        // dispatch(filtered(currentProductType));
-        // dispatch(setCurrentProductType(2))
-        // dispatch(filtered(2));
+        dispatch(setNewProductType(2));
     }, [dispatch]);
 
     useEffect(() => {
-        if (currentProductType !== null) {
-            dispatch(filtered(currentProductType));
+        if (currentNewProductType !== null) {
+            dispatch(fetchNewProducts(currentNewProductType));
         }
-    }, [currentProductType, dispatch]);
-
+    }, [currentNewProductType, dispatch]);
 
     const handleFilter = (id) => {
-        dispatch(setCurrentProductType(id));
+        dispatch(setNewProductType(id));
     };
 
     const changeCountIncrement = (productId) => {
-        dispatch(incrementProductCount({ productId }));
+        dispatch(incrementNewProductCount({ productId }));
+        console.log('incr burg', newProducts.find(p => p.id === productId).count);
     };
 
     const changeCountDecrement = (productId) => {
-        dispatch(decrementProductCount({ productId }));
+        dispatch(decrementNewProductCount({ productId }));
     };
 
     const addProductsToLSFn = (productId) => {
-        dispatch(addToLocalStorage({ productId }));
+        dispatch(addToProductLocalStorage({ productId }));
     };
 
     return (
@@ -60,31 +57,31 @@ function NewProductsPage() {
                 ))}
             </ul>
 
-            <ul className={currentProductType === 2 ? burgerStyles.burger_card : pizzaStyles.pizza_card}>
-                {allProducts && allProducts.map((product) => (
+            <ul className={currentNewProductType ? burgerStyles.burger_card : ''}>
+                {newProducts && newProducts.map((product) => (
                     <div key={product.id}
-                    className={currentProductType === 2 ? burgerStyles.burger_card_bgr : pizzaStyles.pizza_card_bgr}>
-                        <div className={currentProductType === 2 ? burgerStyles.burger_card_bgr : pizzaStyles.pizza_card_bgr}>
+                    className={currentNewProductType ? burgerStyles.burger_card_bgr : ''}>
+                        <div className={currentNewProductType ? burgerStyles.burger_card_bgr : ''}>
                             <img src={product.image}
                                  alt="picture of burger"
                                  className={burgerStyles.burger_img}/>
-                            <h2 className={currentProductType === 2 ? burgerStyles.burger_title : pizzaStyles.pizza_title}>{product.name}</h2>
-                            <p className={currentProductType === 2 ? burgerStyles.burger_text : pizzaStyles.pizza_text}>
+                            <h2 className={currentNewProductType ? burgerStyles.burger_title : ''}>{product.name}</h2>
+                            <p className={currentNewProductType ? burgerStyles.burger_text : ''}>
                                 {product.description}
                             </p>
-                            <p className={currentProductType === 2 ? burgerStyles.burger_price : pizzaStyles.pizza_price}>{product.price}</p>
-                            <div className={currentProductType === 2 ? burgerStyles.burger_btn : pizzaStyles.pizza_btn}>
+                            <p className={currentNewProductType ? burgerStyles.burger_price : ''}>{product.price}</p>
+                            <div className={burgerStyles.burger_btn}>
                                 <button
-                                    className={burgerStyles.burger_minus_btn}
+                                    className={currentNewProductType ? burgerStyles.burger_minus_btn : ''}
                                     onClick={() => changeCountDecrement(product.id)}>
                                     <svg width="16" height="3" viewBox="0 0 16 2" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M0 1.43091L16 1.43091" stroke="#FF583E"/>
                                     </svg>
                                 </button>
-                                {product.count || 0}
+                                {product.count || 1}
                                 <button
-                                    className={burgerStyles.burger_plus_btn}
+                                    className={currentNewProductType ? burgerStyles.burger_plus_btn : ''}
                                     onClick={() => changeCountIncrement(product.id)}>
                                     <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -94,7 +91,7 @@ function NewProductsPage() {
                                 </button>
                             </div>
                             <button
-                                className={burgerStyles.burger_korzina_btn}
+                                className={currentNewProductType ? burgerStyles.burger_korzina_btn : ''}
                                 onClick={() => addProductsToLSFn(product.id)}>
                                 В корзину
                             </button>
