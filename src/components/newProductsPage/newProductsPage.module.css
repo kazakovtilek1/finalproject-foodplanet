@@ -71,6 +71,7 @@
 .burger_text{
    font-size: 14px;
     line-height: 16px;
+    color: white;
 }
 
 .burger_btn{
@@ -110,6 +111,7 @@
     margin: 0;
     font-size: 20px;
     font-weight: 700;
+    color: white;
 }
 
 

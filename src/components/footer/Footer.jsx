@@ -19,13 +19,13 @@ function Footer({ scrollToSection }) {
             <NavLink onClick={() => scrollToSection('main')} className={classes.nav} to="/">Главная</NavLink>
           </li>
           <li>
-            <NavLink className={classes.nav}>Меню &#9660;</NavLink>
+            <NavLink onClick={() => scrollToSection('menu')} className={classes.nav}>Меню &#9660;</NavLink>
           </li>
           <li>
-            <NavLink className={classes.nav}>Наши преимущества</NavLink>
+            <NavLink onClick={() => scrollToSection('advantages')} className={classes.nav}>Наши преимущества</NavLink>
           </li>
           <li>
-            <NavLink className={classes.nav}>Отзывы</NavLink>
+            <NavLink onClick={() => scrollToSection('reviews')} className={classes.nav}>Отзывы</NavLink>
           </li>
           <li>
             &#128222; +996500405988

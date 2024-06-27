@@ -40,7 +40,9 @@ function MainPage() {
         <div ref={mainRef}>
         <Header scrollToSection={scrollToSection} />
         </div>
-        <Delievery />
+        <div ref={menuRef}>
+        <Delievery scrollToSection={scrollToSection} />
+        </div>
         <NewProductsPage/>
         <div ref={menuRef}>
         <MenuPage />
