@@ -93,14 +93,16 @@
 
 .pizza_minus_btn{
     padding-bottom: 5px;
+    cursor: pointer;
 }
 
 .pizza_plus_btn{
     padding-top: 8px;
+    cursor: pointer;
 }
 
 .pizza_korzina_btn{
-    background-color: #FF583E;
+    background-color: #254F4C;
     color: white;
     border-radius: 40px;
     border: none;
@@ -109,6 +111,7 @@
     font-size: 14px;
     text-transform: uppercase;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .pizza_price{
@@ -128,6 +131,7 @@
     margin: 43px auto 0;
     font-weight: 700;
     width: 200px;
+    cursor: pointer;
 }
 
 

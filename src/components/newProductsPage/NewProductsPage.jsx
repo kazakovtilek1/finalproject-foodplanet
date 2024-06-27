@@ -56,22 +56,22 @@ function NewProductsPage() {
                 ))}
             </ul>
 
-            <ul className={currentNewProductType ? burgerStyles.burger_card : ''}>
+            <ul className={burgerStyles.burger_card}>
                 {newProducts && newProducts.map((product) => (
                     <div key={product.id}
-                    className={currentNewProductType ? burgerStyles.burger_card_bgr : ''}>
-                        <div className={currentNewProductType ? burgerStyles.burger_card_bgr : ''}>
+                    className={burgerStyles.burger_card_bgr}>
+                        <div className={burgerStyles.burger_card_bgr}>
                             <img src={product.image}
                                  alt="picture of burger"
                                  className={burgerStyles.burger_img}/>
-                            <h2 className={currentNewProductType ? burgerStyles.burger_title : ''}>{product.name}</h2>
-                            <p className={currentNewProductType ? burgerStyles.burger_text : ''}>
+                            <h2 className={burgerStyles.burger_title}>{product.name}</h2>
+                            <p className={burgerStyles.burger_text}>
                                 {product.description}
                             </p>
-                            <p className={currentNewProductType ? burgerStyles.burger_price : ''}>{product.price}</p>
+                            <p className={burgerStyles.burger_price}>{product.price}</p>
                             <div className={burgerStyles.burger_btn}>
                                 <button
-                                    className={currentNewProductType ? burgerStyles.burger_minus_btn : ''}
+                                    className={burgerStyles.burger_minus_btn}
                                     onClick={() => changeCountDecrement(product.id)}>
                                     <svg width="16" height="3" viewBox="0 0 16 2" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -80,7 +80,7 @@ function NewProductsPage() {
                                 </button>
                                 {product.count || 1}
                                 <button
-                                    className={currentNewProductType ? burgerStyles.burger_plus_btn : ''}
+                                    className={burgerStyles.burger_plus_btn}
                                     onClick={() => changeCountIncrement(product.id)}>
                                     <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +90,7 @@ function NewProductsPage() {
                                 </button>
                             </div>
                             <button
-                                className={currentNewProductType ? burgerStyles.burger_korzina_btn : ''}
+                                className={burgerStyles.burger_korzina_btn}
                                 onClick={() => addProductsToLSFn(product.id)}>
                                 В корзину
                             </button>

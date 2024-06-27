@@ -59,22 +59,22 @@ function MenuPage() {
                 ))}
             </ul>
 
-            <ul className={currentMenuProductType ? pizzaStyles.pizza_card : ''}>
+            <ul className={pizzaStyles.pizza_card}>
                 {menuProducts && menuProducts.map((product) => (
                     <div key={product.id}
-                    className={currentMenuProductType ? pizzaStyles.pizza_card_bgr : ''}>
-                        <div className={currentMenuProductType ? pizzaStyles.pizza_card_bgr : ''}>
+                    className={pizzaStyles.pizza_card_bgr}>
+                        <div className={pizzaStyles.pizza_card_bgr}>
                             <img src={product.image}
                                  alt="picture of pizza"
                                  className={pizzaStyles.pizza_img}/>
-                            <h2 className={currentMenuProductType ? pizzaStyles.pizza_title : ''}>{product.name}</h2>
-                            <p className={currentMenuProductType ? pizzaStyles.pizza_text : ''}>
+                            <h2 className={pizzaStyles.pizza_title}>{product.name}</h2>
+                            <p className={pizzaStyles.pizza_text}>
                                 {product.description}
                             </p>
-                            <p className={currentMenuProductType ? pizzaStyles.pizza_price : ''}>{product.price}</p>
+                            <p className={pizzaStyles.pizza_price }>{product.price}</p>
                             <div className={pizzaStyles.pizza_btn}>
                                 <button
-                                    className={currentMenuProductType ? pizzaStyles.pizza_minus_btn : ''}
+                                    className={pizzaStyles.pizza_minus_btn}
                                     onClick={() => changeCountDecrement(product.id)}>
                                     <svg width="16" height="3" viewBox="0 0 16 2" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -83,7 +83,7 @@ function MenuPage() {
                                 </button>
                                 {product.count || 1}
                                 <button
-                                    className={currentMenuProductType ? pizzaStyles.pizza_plus_btn : ''}
+                                    className={pizzaStyles.pizza_plus_btn}
                                     onClick={() => changeCountIncrement(product.id)}>
                                     <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -93,7 +93,7 @@ function MenuPage() {
                                 </button>
                             </div>
                             <button
-                                className={currentMenuProductType ? pizzaStyles.pizza_korzina_btn : ''}
+                                className={pizzaStyles.pizza_korzina_btn}
                                 onClick={() => addProductsToLS(product.id)}>
                                 В корзину
                             </button>
