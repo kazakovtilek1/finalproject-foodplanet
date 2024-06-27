@@ -10,88 +10,148 @@ export const getProductsType = createAsyncThunk(
     }
 );
 
-export const filtered = createAsyncThunk(
-    "products/fetchProductsByType",
+export const fetchNewProducts  = createAsyncThunk(
+    "products/fetchNewProducts",
     async (id) => {
-        // const response = await axios.get(`http://localhost:8000/allProducts?productType=${id}&news=true`);
-        const response = await axios.get(`http://localhost:8000/allProducts?productType=${id}`);
-        return response.data;
+        const response = await axios.get(`http://localhost:8000/allProducts?productType=${id}&news=true`);
+        return response.data.map(product => ({ ...product, count: 0 }));
+    }
+);
+
+export const fetchMenuProducts  = createAsyncThunk(
+    "products/fetchMenuProducts",
+    async (id) => {
+        const response = await axios.get(`http://localhost:8000/allProducts?productType=${id}&menu=true`);
+        return response.data.map(product => ({ ...product, count: 0 }));
     }
 );
 
 
-const saveCartToLocalStorage = (cart) => {
+const saveCartToLocalStorage = (cart, productType) => {
     try {
-        localStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem(`cart_${productType}`, JSON.stringify(cart));
     } catch (error) {
-        console.error("Error saving cart to localStorage:", error);
+        console.error(`Ошибка сохранения корзины ${productType} в localStorage:`, error);
     }
 };
-
 
 
 const productCountSlice = createSlice({
     name: "products",
     initialState: {
         productTypes: [],
-        allProducts: [],
-        currentProductType: null,
-        cart: JSON.parse(localStorage.getItem("cart")) || []
+        menuProducts: [],
+        newProducts: [],
+        currentMenuProductType: null,
+        currentNewProductType: null,
+        cart: {
+            burgers:
+                JSON.parse(localStorage.getItem("cart_burgers")) || [],
+            pizzas:
+                JSON.parse(localStorage.getItem("cart_pizzas")) || [],
+        }
     },
     reducers: {
-        incrementProductCount(state, action) {
+        incrementMenuProductCount(state, action) {
             const { productId } = action.payload;
-            const product = state.allProducts.find((product) => product.id === productId);
-            if (product) {
-                product.count = (product.count || 0) + 1;
+            const productInMenuIndex = state.menuProducts.findIndex(product => product.id === productId);
+
+            if (productInMenuIndex !== -1) {
+                state.menuProducts[productInMenuIndex].count += 1;
+                saveCartToLocalStorage(state.cart.pizzas, 'pizzas');
             }
         },
-        decrementProductCount(state, action) {
+        decrementMenuProductCount(state, action) {
             const { productId } = action.payload;
-            const product = state.allProducts.find((product) => product.id === productId);
-            if (product && product.count > 0) {
-                product.count -= 1;
+            const productInMenuIndex = state.menuProducts.findIndex(product => product.id === productId);
+
+            if (productInMenuIndex !== -1 && state.menuProducts[productInMenuIndex].count > 0) {
+                state.menuProducts[productInMenuIndex].count -= 1;
+                saveCartToLocalStorage(state.cart.pizzas, 'pizzas');
             }
         },
-        addToLocalStorage(state, action) {
+        addToMenuLocalStorage(state, action) {
             const { productId } = action.payload;
-            const productToAdd = state.allProducts.find((product) => product.id === productId);
+            const productToAdd = state.menuProducts.find(product => product.id === productId);
+            const productInMenuIndex = state.menuProducts.findIndex(product => product.id === productId);
 
             if (productToAdd) {
-                if (!Array.isArray(state.cart)) {
-                    state.cart = [];
-                }
+                const existingProductIndex = state.cart.pizzas.findIndex(product => product.id === productId);
 
-                const existingProduct = state.cart.find((product) => product.id === productId);
-
-                if (existingProduct) {
-                    existingProduct.count = productToAdd.count;
+                if (existingProductIndex !== -1) {
+                    state.cart.pizzas[existingProductIndex].count = state.menuProducts[productInMenuIndex].count;
                 } else {
-                    state.cart.push({ ...productToAdd, count: productToAdd.count });
+                    state.cart.pizzas.push({ ...productToAdd, count: state.menuProducts[productInMenuIndex].count });
                 }
 
-                saveCartToLocalStorage(state.cart);
+                saveCartToLocalStorage(state.cart.pizzas, 'pizzas');
             }
         },
-        setCurrentProductType: (state, action) => {
-            state.currentProductType = action.payload;
-        }
+        incrementNewProductCount(state, action) {
+            const { productId } = action.payload;
+            const productInNewIndex = state.newProducts.findIndex(product => product.id === productId);
+
+            if (productInNewIndex !== -1) {
+                state.newProducts[productInNewIndex].count += 1;
+                saveCartToLocalStorage(state.cart.burgers, 'burgers');
+            }
+        },
+        decrementNewProductCount(state, action) {
+            const { productId } = action.payload;
+            const productInNewIndex = state.newProducts.findIndex(product => product.id === productId);
+
+            if (productInNewIndex !== -1 && state.newProducts[productInNewIndex].count > 0) {
+                state.newProducts[productInNewIndex].count -= 1;
+                saveCartToLocalStorage(state.cart.burgers, 'burgers');
+            }
+        },
+        addToProductLocalStorage(state, action) {
+            const { productId } = action.payload;
+            const productToAdd = state.newProducts.find(product => product.id === productId);
+            const productInNewIndex = state.newProducts.findIndex(product => product.id === productId);
+
+            if (productToAdd) {
+                const existingProductIndex = state.cart.burgers.findIndex(product => product.id === productId);
+
+                if (existingProductIndex !== -1) {
+                    state.cart.burgers[existingProductIndex].count = state.newProducts[productInNewIndex].count;
+                } else {
+                    state.cart.burgers.push({ ...productToAdd, count: state.newProducts[productInNewIndex].count });
+                }
+                saveCartToLocalStorage(state.cart.burgers, 'burgers');
+            }
+        },
+
+        setMenuProductType: (state, action) => {
+            state.currentMenuProductType = action.payload;
+        },
+        setNewProductType: (state, action) => {
+            state.currentNewProductType = action.payload;
+        },
+
     },
     extraReducers: (builder) => {
         builder.addCase(getProductsType.fulfilled, (state, action) => {
             state.productTypes = action.payload;
         });
-        builder.addCase(filtered.fulfilled, (state, action) => {
-            state.allProducts = action.payload;
+        builder.addCase(fetchNewProducts.fulfilled, (state, action) => {
+            state.newProducts = action.payload.map(product => ({ ...product, count: 0 }));
+        });
+        builder.addCase(fetchMenuProducts.fulfilled, (state, action) => {
+            state.menuProducts = action.payload.map(product => ({ ...product, count: 0 }));
         });
     },
 });
 
 export const {
-    incrementProductCount,
-    decrementProductCount,
-    addToLocalStorage,
-    setCurrentProductType
+    incrementMenuProductCount,
+    decrementMenuProductCount,
+    addToMenuLocalStorage,
+    incrementNewProductCount,
+    decrementNewProductCount,
+    addToProductLocalStorage,
+    setMenuProductType,
+    setNewProductType
    } = productCountSlice.actions;
 export default productCountSlice.reducer;
 
