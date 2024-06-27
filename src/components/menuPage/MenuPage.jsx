@@ -46,6 +46,8 @@ function MenuPage() {
         dispatch(addToLocalStorage({ productId }));
     };
 
+    
+
     return (
         <div>
             <ul className={pizzaStyles.pizza_pages}>

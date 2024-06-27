@@ -4,8 +4,6 @@ import reviewsReducer from "./reviewsSlice";
 
 
 
-
-
 const reducer = combineReducers({
     productTypeReducer,
     reviewsReducer,
