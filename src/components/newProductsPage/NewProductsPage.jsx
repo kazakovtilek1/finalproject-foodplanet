@@ -12,6 +12,7 @@ import {
 
 
 
+
 function NewProductsPage() {
     const {productTypes, currentNewProductType, newProducts} = useSelector((store) => store.productTypeReducer);
     const dispatch = useDispatch();
