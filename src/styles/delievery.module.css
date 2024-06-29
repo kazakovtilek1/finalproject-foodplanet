@@ -21,7 +21,7 @@ h1 {
     line-height: 42px;
 }
 
-p {
+.del__text {
     color: #1D3130;
     font-size: 13px;
     line-height: 23px;
