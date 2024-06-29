@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom'
 function Footer({ scrollToSection }) {
   return (
     <footer className={classes.footer}>
+      <div className={classes.footer__container}>
       <div className={classes.footer__left}>
         <img src={GroupWhite} alt="" />
         <div>
@@ -31,6 +32,7 @@ function Footer({ scrollToSection }) {
             &#128222; +996500405988
           </li>
         </ul>
+      </div>
       </div>
     </footer>
   )

@@ -4,13 +4,15 @@
 
 
 body {
+  margin: 0;
+  padding: 0;
+}
 
+.main__page {
   max-width: 1024px;
   margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
-
 }
 
-main {
-  min-height: calc(100vh - 150px)
-}

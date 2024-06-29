@@ -36,7 +36,8 @@ function MainPage() {
 
 
   return (
-    <div>
+    <div className='main__div'>
+      <div className='main__page'>
         <div ref={mainRef}>
         <Header scrollToSection={scrollToSection} />
         </div>
@@ -53,6 +54,7 @@ function MainPage() {
         <div ref={reviewsRef}>
         <ReviewsPage />
         </div>
+      </div>
         <Footer scrollToSection={scrollToSection} />
     </div>
   )

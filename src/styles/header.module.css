@@ -6,7 +6,8 @@
     max-height: 32px;
     align-items: center;
     font-size: 16px;
-    position: relative;
+    width: 1024px;
+    margin: 20px auto;
 }
 
 .header__left {
