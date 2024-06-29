@@ -14,7 +14,6 @@
 }
 
 .burger_pages_li{
-    font-family: Roboto sans-serif;
     font-weight: 400;
     font-size: 18px;
     line-height: 18px;
@@ -32,7 +31,6 @@
 }
 
 .burger_card{
-    font-family: Roboto sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -71,6 +69,7 @@
 .burger_text{
    font-size: 14px;
     line-height: 16px;
+    color: white;
 }
 
 .burger_btn{
@@ -113,6 +112,7 @@
     margin: 0;
     font-size: 20px;
     font-weight: 700;
+    color: white;
 }
 
 

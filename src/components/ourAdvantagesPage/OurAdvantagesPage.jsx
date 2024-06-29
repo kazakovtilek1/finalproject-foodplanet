@@ -1,5 +1,5 @@
 import React from 'react';
-import advantagesStyles from './ourAdvantages.module.css';
+import advantagesStyles from '../../styles/ourAdvantages.module.css';
 
 function OurAdvantagesPage() {
     return (

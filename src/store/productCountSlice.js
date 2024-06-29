@@ -14,7 +14,7 @@ export const fetchNewProducts  = createAsyncThunk(
     "products/fetchNewProducts",
     async (id) => {
         const response = await axios.get(`http://localhost:8000/allProducts?productType=${id}&news=true`);
-        return response.data.map(product => ({ ...product, count: 0 }));
+        return response.data.map(product => ({ ...product, count: 1 }));
     }
 );
 
@@ -22,7 +22,7 @@ export const fetchMenuProducts  = createAsyncThunk(
     "products/fetchMenuProducts",
     async (id) => {
         const response = await axios.get(`http://localhost:8000/allProducts?productType=${id}&menu=true`);
-        return response.data.map(product => ({ ...product, count: 0 }));
+        return response.data.map(product => ({ ...product, count: 1 }));
     }
 );
 
@@ -65,7 +65,7 @@ const productCountSlice = createSlice({
             const { productId } = action.payload;
             const productInMenuIndex = state.menuProducts.findIndex(product => product.id === productId);
 
-            if (productInMenuIndex !== -1 && state.menuProducts[productInMenuIndex].count > 0) {
+            if (productInMenuIndex !== -1 && state.menuProducts[productInMenuIndex].count > 1) {
                 state.menuProducts[productInMenuIndex].count -= 1;
                 saveCartToLocalStorage(state.cart.pizzas, 'pizzas');
             }
@@ -100,7 +100,7 @@ const productCountSlice = createSlice({
             const { productId } = action.payload;
             const productInNewIndex = state.newProducts.findIndex(product => product.id === productId);
 
-            if (productInNewIndex !== -1 && state.newProducts[productInNewIndex].count > 0) {
+            if (productInNewIndex !== -1 && state.newProducts[productInNewIndex].count > 1) {
                 state.newProducts[productInNewIndex].count -= 1;
                 saveCartToLocalStorage(state.cart.burgers, 'burgers');
             }
@@ -135,10 +135,10 @@ const productCountSlice = createSlice({
             state.productTypes = action.payload;
         });
         builder.addCase(fetchNewProducts.fulfilled, (state, action) => {
-            state.newProducts = action.payload.map(product => ({ ...product, count: 0 }));
+            state.newProducts = action.payload.map(product => ({ ...product, count: 1 }));
         });
         builder.addCase(fetchMenuProducts.fulfilled, (state, action) => {
-            state.menuProducts = action.payload.map(product => ({ ...product, count: 0 }));
+            state.menuProducts = action.payload.map(product => ({ ...product, count: 1 }));
         });
     },
 });

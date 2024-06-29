@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import burgerStyles from './newProductsPage.module.css';
+import burgerStyles from '../../styles/newProductsPage.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {
     getProductsType,

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import pizzaStyles from './menuPage.module.css';
+import pizzaStyles from '../../styles/menuPage.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {
     incrementMenuProductCount,
@@ -45,6 +45,8 @@ function MenuPage() {
         dispatch(addToMenuLocalStorage({ productId }));
     };
 
+    
+
     return (
         <div>
             <ul className={pizzaStyles.pizza_pages}>
@@ -58,6 +60,16 @@ function MenuPage() {
                     </button>
                 ))}
             </ul>
+
+            <div className={pizzaStyles.pizza_sort}>
+                <button className={pizzaStyles.pizza_sort_left_btn}>Сортировать  по: </button>
+                <button className={pizzaStyles.pizza_sort_right_btn}>По умолчанию
+                    <svg className={pizzaStyles.pizza_sort_txt} width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 6L0 0H10L5 6Z" fill="#6C6C6C"/>
+                    </svg>
+                </button>
+            </div>
+
 
             <ul className={pizzaStyles.pizza_card}>
                 {menuProducts && menuProducts.map((product) => (

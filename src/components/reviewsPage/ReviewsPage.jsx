@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import reviewsStyles from './reviews.module.css';
+import reviewsStyles from '../../styles/reviews.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {fetchReviews, selectReviews} from "../../store/reviewsSlice";
 

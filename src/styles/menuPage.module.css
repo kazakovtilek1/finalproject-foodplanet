@@ -14,7 +14,6 @@
 }
 
 .pizza_pages_li{
-    font-family: Roboto sans-serif;
     font-weight: 400;
     font-size: 18px;
     line-height: 18px;
@@ -31,8 +30,28 @@
     color: red;
 }
 
+.pizza_sort{
+    display: flex;
+    justify-content: end;
+    color: #3A403F;
+}
+
+.pizza_sort_right_btn{
+    background: transparent;
+    color: #3A403F;
+    border: 1px solid #3A403F;
+}
+
+.pizza_sort_left_btn{
+    background: transparent;
+    color: #3A403F;
+}
+
+.pizza_sort_txt{
+    margin-left: 6px;
+}
+
 .pizza_card{
-    font-family: Roboto sans-serif;
     display: flex;
     flex-wrap: wrap;
     row-gap: 94px;
@@ -41,8 +60,6 @@
     color: #FFFFFF;
     margin-top: 60px;
     padding: 0;
-    /*width: 264px;*/
-    /*height: 392px;*/
 }
 
 .pizza_card_bgr{
