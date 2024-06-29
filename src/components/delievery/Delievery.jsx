@@ -9,7 +9,7 @@ function Delievery({ scrollToSection }) {
         <div>
           <h1>Доставка вкусной еды до 30 минут + напиток в подарок!</h1>
           <p>Доставим заказ вовремя и можете рассчитывать, что еда будет доставлен всегда горячим и ароматным.</p>
-          <button onClick={() => scrollToSection('menu')}>ПЕРЕЙТИ В МЕНЮ <img className={classes.arrow} src={arrow} alt="" /></button>
+          <button className={classes.menu__btn} onClick={() => scrollToSection('menu')}>ПЕРЕЙТИ В МЕНЮ <img className={classes.arrow} src={arrow} alt="" /></button>
         </div>
         <img className={classes.burger} src={burger} alt="" />
     </main>

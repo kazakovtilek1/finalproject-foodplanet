@@ -27,7 +27,7 @@ p {
     line-height: 23px;
 }
 
-button {
+.menu__btn {
     width: 216px;
     height: 49px;
     border-radius: 100px;
@@ -37,7 +37,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.menu__btn:hover {
     background: green;
     transition: 1s;
 }

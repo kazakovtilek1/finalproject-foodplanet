@@ -35,27 +35,29 @@ function MainPage() {
     };
 
 
-    return (
-        <div>
-            <div ref={mainRef}>
-                <Header scrollToSection={scrollToSection} />
-            </div>
-            <div ref={menuRef}>
-                <Delievery scrollToSection={scrollToSection} />
-            </div>
-            <NewProductsPage/>
-            <div ref={menuRef}>
-                <MenuPage />
-            </div>
-            <div ref={advantagesRef}>
-                <OurAdvantagesPage />
-            </div>
-            <div ref={reviewsRef}>
-                <ReviewsPage />
-            </div>
-            <Footer scrollToSection={scrollToSection} />
+  return (
+    <div className='main__div'>
+      <div className='main__page'>
+        <div ref={mainRef}>
+        <Header scrollToSection={scrollToSection} />
         </div>
-    )
+        <div ref={menuRef}>
+        <Delievery scrollToSection={scrollToSection} />
+        </div>
+        <NewProductsPage/>
+        <div ref={menuRef}>
+        <MenuPage />
+        </div>
+        <div ref={advantagesRef}>
+        <OurAdvantagesPage />
+        </div>
+        <div ref={reviewsRef}>
+        <ReviewsPage />
+        </div>
+      </div>
+        <Footer scrollToSection={scrollToSection} />
+    </div>
+  )
 }
 
 export default MainPage
