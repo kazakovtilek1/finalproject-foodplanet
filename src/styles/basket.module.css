@@ -1,4 +1,88 @@
 .basket {
     max-width: 1024px;
     margin: 100px auto;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 30px;
+}
+
+.basket__title {
+    margin: 50px 205px 0;
+    color: rgb(248, 208, 134);
+}
+
+.empty {
+    margin: 140px  205px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.product__name {
+    margin: 40px 205px 0;
+    color: brown;
+}
+
+.item {
+    max-width: 200px;
+    margin: 30px 0 0 ;
+}
+
+.basket__menu__btn {
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    background: #f9a699;
+    color: rgb(37, 36, 36);
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.total__p {
+    margin: 0 205px;
+}
+
+.plus__minus__btn {
+    width: 30px;
+    height: 20px;
+    background: rgb(251, 250, 250);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.plus__minus__btn:hover {
+    background: rgb(248, 208, 134);
+    transition: 0.5s;
+}
+
+.clearAll__btn {
+    margin: 10px 205px;
+    width: 150px;
+    height: 30px;
+    background: rgb(248, 56, 56);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.clearAll__btn:hover {
+    background: rgb(152, 1, 1);
+    transition: 1s;
+}
+
+.remove__btn {
+    width: 80px;
+    height: 20px;
+    background: #fa735e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove__btn:hover {
+    background: rgb(116, 0, 0);
+    transition: 0.5s;
 }

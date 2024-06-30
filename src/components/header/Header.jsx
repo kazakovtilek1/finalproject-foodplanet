@@ -1,8 +1,9 @@
-import React, {useRef} from 'react'
+import React from 'react'
 import Group from '../../images/Group.png'
 import classes  from '../../styles/header.module.css'
 import { NavLink } from 'react-router-dom'
 import { FaShoppingCart } from "react-icons/fa";
+import { useSelector } from 'react-redux';
 
 
 
@@ -10,7 +11,9 @@ import { FaShoppingCart } from "react-icons/fa";
 
 function Header({ scrollToSection }) {
 
+  const {itemCount} = useSelector(store => store.productTypeReducer);
 
+  
   return (
     <header className={classes.header}>
       <div className={classes.header__left}>
@@ -37,8 +40,9 @@ function Header({ scrollToSection }) {
           <li>
             &#128222; +996500405988
           </li>
-          <li>
+          <li className={classes.icon__li}>
             <NavLink to="/basket"><FaShoppingCart className={classes.basket__icon} /></NavLink>
+            {itemCount > 0 && <span className={classes.itemCount}>{itemCount}</span>}
           </li>
         </ul>
       </div>

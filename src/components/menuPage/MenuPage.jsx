@@ -7,7 +7,8 @@ import {
     addToMenuLocalStorage,
     fetchMenuProducts,
     getProductsType,
-    setMenuProductType
+    setMenuProductType,
+    setItemCount
 } from "../../store/productCountSlice";
 
 
@@ -20,6 +21,7 @@ function MenuPage() {
     useEffect(() => {
         dispatch(getProductsType());
         dispatch(setMenuProductType(1));
+        dispatch(setItemCount());
     }, [dispatch]);
 
     useEffect(() => {
@@ -43,6 +45,7 @@ function MenuPage() {
 
     const addProductsToLS = (productId) => {
         dispatch(addToMenuLocalStorage({ productId }));
+        dispatch(setItemCount());
     };
 
     

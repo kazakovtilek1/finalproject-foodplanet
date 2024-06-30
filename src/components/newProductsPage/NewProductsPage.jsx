@@ -7,7 +7,8 @@ import {
     incrementNewProductCount,
     decrementNewProductCount,
     addToProductLocalStorage,
-    setNewProductType
+    setNewProductType,
+    setItemCount
 } from "../../store/productCountSlice";
 
 
@@ -20,6 +21,7 @@ function NewProductsPage() {
     useEffect(() => {
         dispatch(getProductsType());
         dispatch(setNewProductType(2));
+        dispatch(setItemCount());
     }, [dispatch]);
 
     useEffect(() => {
@@ -43,6 +45,7 @@ function NewProductsPage() {
 
     const addProductsToLSFn = (productId) => {
         dispatch(addToProductLocalStorage({ productId }));
+        dispatch(setItemCount());
     };
 
     return (

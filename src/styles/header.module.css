@@ -65,3 +65,12 @@
     color: red;
     transform: scale(1.5);
 }
+
+.itemCount {
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+.icon__li {
+    display: flex;
+}

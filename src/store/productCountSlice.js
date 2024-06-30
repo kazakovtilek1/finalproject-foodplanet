@@ -36,12 +36,24 @@ const saveCartToLocalStorage = (cart, productType) => {
 };
 
 
+const loadCartFromLocalStorage = (productType) => {
+    try {
+      const cartData = localStorage.getItem(`cart_${productType}`);
+      return cartData ? JSON.parse(cartData) : [];
+    } catch (error) {
+      console.error(`Ошибка загрузки корзины ${productType} из localStorage:`, error);
+      return [];
+    }
+  };
+
+
 const productCountSlice = createSlice({
     name: "products",
     initialState: {
         productTypes: [],
         menuProducts: [],
         newProducts: [],
+        itemCount: 0,
         currentMenuProductType: null,
         currentNewProductType: null,
         cart: {
@@ -52,6 +64,10 @@ const productCountSlice = createSlice({
         }
     },
     reducers: {
+        setItemCount: (state) => {
+            const { burgers, pizzas } = state.cart;
+            state.itemCount = burgers.length + pizzas.length;
+          },
         incrementMenuProductCount(state, action) {
             const { productId } = action.payload;
             const productInMenuIndex = state.menuProducts.findIndex(product => product.id === productId);
@@ -128,7 +144,6 @@ const productCountSlice = createSlice({
         setNewProductType: (state, action) => {
             state.currentNewProductType = action.payload;
         },
-
     },
     extraReducers: (builder) => {
         builder.addCase(getProductsType.fulfilled, (state, action) => {
@@ -144,6 +159,7 @@ const productCountSlice = createSlice({
 });
 
 export const {
+    setItemCount,
     incrementMenuProductCount,
     decrementMenuProductCount,
     addToMenuLocalStorage,
