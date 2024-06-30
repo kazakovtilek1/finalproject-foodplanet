@@ -61,12 +61,12 @@ function ReviewsPage() {
                                                 d="M1.10893 2.64198L2.87735 0.873556C3.12999 0.620924 3.50893 0.620924 3.76157 0.873556L4.32999 1.44198L1.67736 4.09461L1.10893 3.52619C0.856302 3.27356 0.856302 2.89461 1.10893 2.64198Z"
                                                 fill="#FF583E"/>
                                         </g>
-                                    <defs>
-                                        <clipPath id="clip0_2_352">
-                                            <rect width="12.6316" height="12.6316" fill="white"
-                                                  transform="matrix(-1 0 0 1 13.3158 0.684082)"/>
-                                        </clipPath>
-                                    </defs>
+                                        <defs>
+                                            <clipPath id="clip0_2_352">
+                                                <rect width="12.6316" height="12.6316" fill="white"
+                                                      transform="matrix(-1 0 0 1 13.3158 0.684082)"/>
+                                            </clipPath>
+                                        </defs>
                                 </svg>
                             </div>
                             <p className={reviewsStyles.reviews_txt}>{review.content}</p>

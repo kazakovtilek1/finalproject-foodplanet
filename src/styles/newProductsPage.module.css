@@ -11,14 +11,16 @@
     color: #254F4C;
     margin: 0 164px 0 0;
     padding: 10px 0;
+    cursor: pointer;
 }
 
 .burger_pages_li{
     font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 18px;
     padding: 0 15px;
     color: #1D3130;
+    cursor: pointer;
 }
 
 .burger_pages_li_btn{
