@@ -13,7 +13,6 @@ import {
 
 
 
-
 function NewProductsPage() {
     const {productTypes, currentNewProductType, newProducts} = useSelector((store) => store.productTypeReducer);
     const dispatch = useDispatch();
@@ -72,7 +71,7 @@ function NewProductsPage() {
                             <p className={burgerStyles.burger_text}>
                                 {product.description}
                             </p>
-                            <p className={burgerStyles.burger_price}>{product.price}</p>
+                            <p className={burgerStyles.burger_price}>{product.price} сом</p>
                             <div className={burgerStyles.burger_btn}>
                                 <button
                                     className={burgerStyles.burger_minus_btn}

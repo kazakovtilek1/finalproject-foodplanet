@@ -86,7 +86,7 @@ function MenuPage() {
                             <p className={pizzaStyles.pizza_text}>
                                 {product.description}
                             </p>
-                            <p className={pizzaStyles.pizza_price }>{product.price}</p>
+                            <p className={pizzaStyles.pizza_price }>{product.price} сом</p>
                             <div className={pizzaStyles.pizza_btn}>
                                 <button
                                     className={pizzaStyles.pizza_minus_btn}
